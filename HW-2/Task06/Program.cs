@@ -18,8 +18,61 @@ namespace Task06
 {
     class Program
     {
+        static int sumDigits(int num)
+        {
+            int sum = 0;
+            do
+            {
+                sum += num % 10;
+                num /= 10;
+            } while (num != 0);
+            return sum;
+        }
+
         static void Main(string[] args)
         {
+            int count = 0;
+
+            Console.WriteLine("Итерация 1. Цикл for");
+            
+            DateTime start = DateTime.Now;
+            
+            for (int i = 1; i <= 1000000000; i++)
+            {
+                if (i % sumDigits(i) == 0)
+                {
+                    count++;
+                }
+            }
+
+            DateTime finish = DateTime.Now;
+
+            Console.WriteLine($"Количество хороших чисел - {count}");
+            Console.WriteLine($"Время вычисления {finish - start}");
+            Console.WriteLine();
+
+            count = 0;
+            Console.WriteLine("Итерация 2. Цикл while");
+
+            start = DateTime.Now;
+
+            int j = 1;
+            
+            while (j <= 1000000000)
+            {
+                if (j % sumDigits(j) == 0)
+                {
+                    count++;
+                }
+                j++;
+            }
+
+            finish = DateTime.Now;
+
+            Console.WriteLine($"Количество хороших чисел - {count}");
+            Console.WriteLine($"Время вычисления {finish - start}");
+
+            Console.ReadLine();
         }
     }
 }
