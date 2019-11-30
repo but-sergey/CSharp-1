@@ -18,6 +18,20 @@ namespace Task02
     {
         static void Main(string[] args)
         {
+            Console.Write("Введите число: ");
+            int userNum = Convert.ToInt32(Console.ReadLine());
+            int num = userNum;
+            int numbers = 1;
+            
+            while(num >= 10)
+            {
+                num = num / 10;
+                numbers++;
+            }
+
+            Console.WriteLine($"Число {userNum} состоит из {numbers} цифр.");
+
+            Console.ReadLine();
         }
     }
 }
