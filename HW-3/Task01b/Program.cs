@@ -2,9 +2,9 @@
 // Домашнее задание к уроку 2
 // Бут Сергей
 //
-// === Задание 01-а ===
-// а) Дописать структуру Complex, добавив метод вычитания
-// комплексных чисел.Продемонстрировать работу структуры;
+// === Задание 01-б ===
+// б) Дописать класс Complex, добавив методы вычитания и
+// произведения чисел.Проверить работу класса;
 
 
 using System;
@@ -13,16 +13,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task01a
+namespace Task01b
 {
-    struct Complex
+    class Complex
     {
-        public double re;
-        public double im;
+        private double re;
+        private double im;
+
+        public Complex()
+        {
+            this.re = 0;
+            this.im = 0;
+        }
+
+        public Complex(double re, double im)
+        {
+            this.re = re;
+            this.im = im;
+        }
 
         public Complex Plus(Complex x)
         {
-            Complex y;
+            Complex y = new Complex();
             y.re = this.re + x.re;
             y.im = this.im + x.im;
             return y;
@@ -30,7 +42,7 @@ namespace Task01a
 
         public Complex Minus(Complex x)
         {
-            Complex y;
+            Complex y = new Complex();
             y.re = this.re - x.re;
             y.im = this.im - x.im;
             return y;
@@ -38,7 +50,7 @@ namespace Task01a
 
         public Complex Multi(Complex x)
         {
-            Complex y;
+            Complex y = new Complex();
             y.re = this.re * x.re - this.im * x.im;
             y.im = this.re * x.im + this.im * x.re;
             return y;
@@ -46,15 +58,27 @@ namespace Task01a
 
         public Complex Div(Complex x)
         {
-            Complex y;
+            Complex y = new Complex();
             y.re = (this.re * x.re + this.im * x.im) / (x.re * x.re + x.im * x.im);
             y.im = (x.re * this.im - this.re * x.im) / (x.re * x.re + x.im * x.im);
             return y;
         }
 
+        public double Re
+        {
+            get { return re; }
+            set { re = value; }
+        }
+
+        public double Im
+        {
+            get { return im; }
+            set { im = value; }
+        }
+
         public override string ToString()
         {
-            return re + "+" + im + "i";
+            return $"{this.re} + {this.im}i";
         }
 
         public void Input(string msg)
@@ -81,13 +105,10 @@ namespace Task01a
 
             byte oper = Convert.ToByte(Console.ReadLine());
 
-            Complex x;
-            x.re = 0; x.im = 0;
-            Complex y;
-            y.re = 0; y.im = 0;
-            Complex z;
-            z.re = 0; z.im = 0;
-            
+            Complex x = new Complex();
+            Complex y = new Complex();
+            Complex z = new Complex();
+
             if ((oper >= 1) && (oper <= 4))
             {
                 x.Input("Введите первое число");
