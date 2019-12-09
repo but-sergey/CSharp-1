@@ -15,11 +15,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Task02
 {
     static class ThreeCount
     {
+        static public int[] FillRandom(int count = 10, int min = 0, int max = 10)
+        {
+            int[] arr = new int[count];
+            var rand = new Random();
+            for(int i = 0; i < count; i++)
+            {
+                arr[i] = rand.Next(min, max);
+            }
+            return arr;
+        }
+
+        static public int[] FillFromFile(string fileName) 
+        {
+            string[] FileLines = File.ReadAllLines(fileName);
+            int[] arr = new int[FileLines.Length];
+                
+            for(int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = Convert.ToInt32(FileLines[i]);
+            }
+            return arr;
+        }
+
         static public int ArrCountThree(int[] arr)
         {
             int counter = 0;
@@ -70,34 +94,41 @@ namespace Task02
     {
         static void Main(string[] args)
         {
-            int MinValue = -10000;
-            int MaxValue = 10000;
-            int[] arr = new int[20];
-            var rand = new Random();
-            int counter = 0;
+            const int MinValue = -10000;
+            const int MaxValue = 10000;
+            const string FileName = "array.txt";
 
-            for (int i = 0; i < arr.Length; i++)
+            int[] arr;
+            int counter;
+
+            //ThreeCount.FillRandom(ref arr, 20, MinValue, MaxValue);
+
+            if (File.Exists(FileName))
             {
-                arr[i] = rand.Next(MinValue, MaxValue);
+                arr = ThreeCount.FillFromFile(FileName);
+
+                // Вариант 1 - без вывода самих пар
+                counter = ThreeCount.ArrCountThree(arr);
+                Console.WriteLine($"Вариант вызова без списка пар\nКоличество найденных пар: {counter}\n");
+
+                // Вариант 2 - с выводом пар
+                int[] pairs = new int[0];
+                counter = ThreeCount.ArrCountThree(arr, ref pairs);
+                Console.WriteLine($"Вариант вызова со списком пар\nКоличество найденных пар: {counter}");
+                for (int i = 0; i < pairs.Length; i++)
+                {
+                    Console.WriteLine($"Пара №{i + 1}: {arr[i]}, {arr[i + 1]}.");
+                }
+
+                Console.Write("\nИсходный массив:");
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    Console.Write($" {arr[i]}{((i == arr.Length - 1) ? "." : ",")}");
+                }
             }
-
-            // Вариант 1 - без вывода самих пар
-            counter = ThreeCount.ArrCountThree(arr);
-            Console.WriteLine($"Вариант вызова без списка пар\nКоличество найденных пар: {counter}\n");
-
-            // Вариант 2 - с выводом пар
-            int[] pairs = new int[0];
-            counter = ThreeCount.ArrCountThree(arr, ref pairs);
-            Console.WriteLine($"Вариант вызова со списком пар\nКоличество найденных пар: {counter}");
-            for(int i = 0; i < pairs.Length; i++)
+            else
             {
-                Console.WriteLine($"Пара №{i+1}: {arr[i]}, {arr[i+1]}.");
-            }
-
-            Console.Write("\nИсходный массив: ");
-            for(int i = 0; i < arr.Length; i++)
-            {
-                Console.Write($" {arr[i]}{((i == arr.Length - 1) ? "." : ",")}");
+                Console.WriteLine($"Файл {FileName} не найден!");
             }
 
             Console.ReadLine();
