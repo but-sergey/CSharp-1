@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task05", "Task05\Task05.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArray", "MyArray\MyArray.csproj", "{9D7A9A6F-71B8-40A5-80BE-5EC4B5231FF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleDimArray", "DoubleDimArray\DoubleDimArray.csproj", "{007EA50B-AB5C-4F3E-BFE3-92A8D8A6F7AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9D7A9A6F-71B8-40A5-80BE-5EC4B5231FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D7A9A6F-71B8-40A5-80BE-5EC4B5231FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D7A9A6F-71B8-40A5-80BE-5EC4B5231FF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{007EA50B-AB5C-4F3E-BFE3-92A8D8A6F7AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007EA50B-AB5C-4F3E-BFE3-92A8D8A6F7AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007EA50B-AB5C-4F3E-BFE3-92A8D8A6F7AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007EA50B-AB5C-4F3E-BFE3-92A8D8A6F7AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

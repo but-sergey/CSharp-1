@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DoubleDimArray;
 
 namespace Task05
 {
@@ -25,6 +26,21 @@ namespace Task05
     {
         static void Main(string[] args)
         {
+            MyDArray DArray = new MyDArray(10, 10, 0, 10);
+            DArray.Print();
+            Console.WriteLine();
+            Console.WriteLine($"Сумма всех элементов: {DArray.Sum()}");
+            Console.WriteLine($"Сумма всех элементов, больше 5: {DArray.SumBigger(5)}");
+            Console.WriteLine($"Минимальный элемент массива: {DArray.Min}");
+            int Row;
+            int Col;
+            DArray.MinIndex(out Row, out Col);
+            Console.WriteLine($"Индекс первого минимального элемента: ({Row}, {Col})");
+            Console.WriteLine($"Максимальный элемент массива: {DArray.Max}");
+            DArray.MaxIndex(out Row, out Col);
+            Console.WriteLine($"Индекс первого максимального элемента: ({Row}, {Col})");
+
+            Console.ReadLine();
         }
     }
 }

@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DoubleDimArray\DoubleDimArray.csproj">
+      <Project>{007ea50b-ab5c-4f3e-bfe3-92a8d8a6f7ac}</Project>
+      <Name>DoubleDimArray</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
