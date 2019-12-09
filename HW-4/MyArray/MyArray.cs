@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace MyArray
 {
-    static public class MyArray
+    static public class Arrays
     {
         static public int[] Arr;
 
-        static MyArray()
+        static Arrays()
         {
             int dim = 10;
             int start = 0;

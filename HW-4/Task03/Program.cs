@@ -20,7 +20,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-//using MyArray;
+using MyArray;
 
 namespace Task03
 {
@@ -28,15 +28,15 @@ namespace Task03
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Исходный массив: " + MyArray.Print(MyArray.Arr));
-            //Console.WriteLine($"Сумма элементов: {MyArray.Sum}");
-            //Console.WriteLine($"Количество максимальных элементов: {MyArray.MaxCount}\n");
+            Console.WriteLine("Исходный массив: " + MyArray.Arrays.Print(MyArray.Arrays.Arr));
+            Console.WriteLine($"Сумма элементов: {MyArray.Arrays.Sum}");
+            Console.WriteLine($"Количество максимальных элементов: {MyArray.Arrays.MaxCount}\n");
 
-            //MyArray.Arr = MyArray.Inverse(MyArray.Arr);
-            //Console.WriteLine($"Инвертированный массив: {MyArray.Print(MyArray.Arr)}");
+            MyArray.Arrays.Arr = MyArray.Arrays.Inverse(MyArray.Arrays.Arr);
+            Console.WriteLine($"Инвертированный массив: {MyArray.Arrays.Print(MyArray.Arrays.Arr)}");
 
-            //MyArray.Multi(MyArray.Arr, 5);
-            //Console.WriteLine($"Массив, умноженный на 5: {MyArray.Print(MyArray.Arr)}");
+            MyArray.Arrays.Multi(MyArray.Arrays.Arr, 5);
+            Console.WriteLine($"Массив, умноженный на 5: {MyArray.Arrays.Print(MyArray.Arrays.Arr)}");
 
             Console.ReadLine();
         }

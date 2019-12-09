@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyArray\MyArray.csproj">
+      <Project>{9d7a9a6f-71b8-40a5-80be-5ec4b5231ff5}</Project>
+      <Name>MyArray</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
