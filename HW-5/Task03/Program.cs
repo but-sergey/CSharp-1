@@ -21,7 +21,7 @@ namespace Task03
 {
     class Program
     {
-        static bool IsInversion(string Str1, string Str2)
+        static bool IsInversion1(string Str1, string Str2)
         {
             bool Flag = true;
             if(Str1.Length == 0 || Str1.Length != Str2.Length)
@@ -47,28 +47,27 @@ namespace Task03
             return Flag;
         }
 
-        static void Main(string[] args)
+        static bool IsInversion2(string Str1, string Str2)
         {
-            Console.Write("Введите первую строку: ");
-            string Str1 = Console.ReadLine();
-
-            Console.Write("Введите вторую строку: ");
-            string Str2 = Console.ReadLine();
-
-            Console.WriteLine("Вариант 1");
-            
-            Console.WriteLine($"Введеные строки {(IsInversion(Str1, Str2) ? "" : "не ")}являются перестановками");
-
-
-            Console.WriteLine("Вариант 2");
-
             char[] CharArr1 = Str1.ToCharArray();
             char[] CharArr2 = Str2.ToCharArray();
             Array.Sort(CharArr1);
             Array.Sort(CharArr2);
-            bool isInv = Enumerable.SequenceEqual(CharArr1, CharArr2);
-            
-            Console.WriteLine($"Введеные строки {(isInv ? "" : "не ")}являются перестановками");
+            return Enumerable.SequenceEqual(CharArr1, CharArr2);
+        }
+
+        static void Main()
+        {
+            Console.Write("Введите первую строку: ");
+            string Str1 = Console.ReadLine();
+            Console.Write("Введите вторую строку: ");
+            string Str2 = Console.ReadLine();
+
+            Console.WriteLine("Вариант 1");
+            Console.WriteLine($"Введеные строки {(IsInversion1(Str1, Str2) ? "" : "не ")}являются перестановками друг друга");
+
+            Console.WriteLine("Вариант 2");
+            Console.WriteLine($"Введеные строки {(IsInversion2(Str1, Str2) ? "" : "не ")}являются перестановками друг друга");
             
             Console.ReadLine();
         }
