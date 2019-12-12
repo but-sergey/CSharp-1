@@ -22,29 +22,46 @@ namespace Task03
     class Program
     {
         static bool IsInversion1(string Str1, string Str2)
-        {
-            bool Flag = true;
-            if(Str1.Length == 0 || Str1.Length != Str2.Length)
-            {
-                Flag = false;
+        {   // Базовые условия: длина не нулевая и равная у обоих строк
+            if(Str1.Length != 0 || Str1.Length == Str2.Length)
+            {   // Берем каждый символ первой строки
+                for(int i = 0; i < Str1.Length; i++)
+                {
+                    // Переменная для копии второй строки без совпадающего символа
+                    string Str2new = "";
+                    // Пробегаемся по второй строке...
+                    for (int j = 0; j < Str2.Length; j++)
+                    {
+                        // Условие удаления символа - символ первой строки равен очередному
+                        // символу второй строки и текущая позиция второй строки равна длине
+                        // уже скопированной части второй строки (никакой символ ещё не
+                        // удалялся, удаляем только один символ за один проход).
+                        // Если это условие не верно, то копируем очередной символ в копию
+                        // второй строки, если не верно - то ничего не копируем, по сути,
+                        // удаляем символ.
+                        if ( !((Str1[i] == Str2[j]) && (j == Str2new.Length)) )
+                        {
+                            Str2new += Str2[j];
+                        }
+                    }
+                    // Если длины второй строки и её копии равны (ни один символ не удален,
+                    // т. к. совпадений не найдено) то значит, в первой строке есть символ,
+                    // которого нет во второй. Выход из метода результатом false
+                    if(Str2.Length == Str2new.Length)
+                    {
+                        return false;
+                    }
+                    // Копируем во вторую строку новую строку, в которой удален один символ
+                    Str2 = Str2new;
+                }
+                // Оба цикла прошли, все символы первой строки найдены во второй,
+                // Строки являются перестановкой друг друга
+                return true;
             }
             else
             {
-                for(int i = 0; i < Str1.Length; i++)
-                {
-                    int Ind = Str2.IndexOf(Str1[i]);
-                    if(Ind == -1)
-                    {
-                        Flag = false;
-                        break;
-                    }
-                    else
-                    {
-                        Str2.Remove(Ind, 1);
-                    }
-                }
+                return false;
             }
-            return Flag;
         }
 
         static bool IsInversion2(string Str1, string Str2)
@@ -63,11 +80,8 @@ namespace Task03
             Console.Write("Введите вторую строку: ");
             string Str2 = Console.ReadLine();
 
-            Console.WriteLine("Вариант 1");
-            Console.WriteLine($"Введеные строки {(IsInversion1(Str1, Str2) ? "" : "не ")}являются перестановками друг друга");
-
-            Console.WriteLine("Вариант 2");
-            Console.WriteLine($"Введеные строки {(IsInversion2(Str1, Str2) ? "" : "не ")}являются перестановками друг друга");
+            Console.WriteLine($"Алгоритм 1. Введеные строки {(IsInversion1(Str1, Str2) ? "" : "не ")}являются перестановками друг друга");
+            Console.WriteLine($"Алгоритм 2. Введеные строки {(IsInversion2(Str1, Str2) ? "" : "не ")}являются перестановками друг друга");
             
             Console.ReadLine();
         }
