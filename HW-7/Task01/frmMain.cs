@@ -25,88 +25,64 @@ namespace Task01
 {
     public partial class frmMain : Form
     {
-        public int task;
-        public int maxStep;
-        public bool gameActive = false;
-        Stack<int> Steps = new Stack<int>();
+
+        Doubler Dbl = new Doubler();
 
         public frmMain()
         {
             InitializeComponent();
+            Dbl.NewGame();
+            RefreshForm();
         }
 
-        private void IncStep()
+        private void RefreshForm()
         {
-            int step = int.Parse(lblStep.Text);
-            int number = int.Parse(lblNumber.Text);
+            lblNumber.Text = Dbl.Number.ToString();
+            lblStep.Text = Dbl.Step.ToString();
+            lblTask.Text = Dbl.Task.ToString();
+            lblMaxStep.Text = Dbl.MaxStep.ToString();
+            btnCancel.Enabled = (Dbl.Step != 0);
+            btnCommand1.Enabled = Dbl.Active;
+            btnCommand2.Enabled = Dbl.Active;
+            lblTask.Visible = Dbl.Active;
+            lblTaskCaption.Visible = Dbl.Active;
+            lblMaxStep.Visible = Dbl.Active;
+            lblMaxStepCaption.Visible = Dbl.Active;
 
-            step++;
-            lblStep.Text = step.ToString();
-            btnCancel.Enabled = true;
-
-            if (number == task)
+            if (Dbl.LostFlag)
             {
-                MessageBox.Show("Вы выиграли!", "Удвоитель", MessageBoxButtons.OK);
-                GameReset();
-            }
-            else if (step == maxStep)
-            {
+                Dbl.LostFlag = false;
                 MessageBox.Show("Вы проиграли!", "Удвоитель", MessageBoxButtons.OK);
-                GameReset();                
+            }
+            if (Dbl.WinFlag)
+            {
+                Dbl.WinFlag = false;
+                MessageBox.Show("Вы выиграли!", "Удвоитель", MessageBoxButtons.OK);
             }
         }
 
         private void btnCommand1_Click(object sender, EventArgs e)
         {
-            lblNumber.Text = (int.Parse(lblNumber.Text) + 1).ToString();
-            Steps.Push(1);
-            IncStep();
+            Dbl.DoIncrement();
+            RefreshForm();
         }
 
         private void btnCommand2_Click(object sender, EventArgs e)
         {
-            lblNumber.Text = (int.Parse(lblNumber.Text) * 2).ToString();
-            Steps.Push(2);
-            IncStep();
+            Dbl.DoDouble();
+            RefreshForm();
         }
 
         private void mnuGBegin_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
-            task = rnd.Next(90) + 10;
-            int tNum = task;
-            maxStep = 0;
-            do
-            {
-                if(tNum%2 == 0) { tNum /= 2; }
-                else { tNum -= 1; }
-                maxStep++;
-            } while (tNum!=1);
-            
-            lblTask.Text = task.ToString();
-            lblMaxStep.Text = maxStep.ToString();
-            lblNumber.Text = "1";
-            lblStep.Text = "0";
-            
-            lblTask.Visible = true;
-            lblTaskCaption.Visible = true;
-            lblMaxStep.Visible = true;
-            lblMaxStepCaption.Visible = true;
-
-            gameActive = true;
+            Dbl.NewGame();
+            RefreshForm();
         }
 
         private void GameReset()
         {
-            lblNumber.Text = "1";
-            lblStep.Text = "0";
-
-            lblTask.Visible = false;
-            lblTaskCaption.Visible = false;
-            lblMaxStep.Visible = false;
-            lblMaxStepCaption.Visible = false;
-
-            gameActive = false;
+            Dbl.Reset();
+            RefreshForm();
         }
 
         private void mnuGReset_Click(object sender, EventArgs e)
@@ -121,20 +97,8 @@ namespace Task01
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            int lastStep = Steps.Pop();
-            if (lastStep == 1)
-            {
-                lblNumber.Text = (int.Parse(lblNumber.Text) - 1).ToString();
-            }
-            else if (lastStep == 2)
-            {
-                lblNumber.Text = (int.Parse(lblNumber.Text) / 2).ToString();
-            }
-            lblStep.Text = (int.Parse(lblStep.Text) - 1).ToString();
-            if(lblStep.Text == "0")
-            {
-                btnCancel.Enabled = false;
-            }
+            Dbl.CancelStep();
+            RefreshForm();
         }
     }
 }
