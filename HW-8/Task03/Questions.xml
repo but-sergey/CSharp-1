@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ArrayOfQuestion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Question>
+    <text>10946 является числом Фибоначчи</text>
+    <trueFalse>true</trueFalse>
+  </Question>
+  <Question>
+    <text>Трава синяя</text>
+    <trueFalse>false</trueFalse>
+  </Question>
+  <Question>
+    <text>Земля круглая</text>
+    <trueFalse>true</trueFalse>
+  </Question>
+</ArrayOfQuestion>
