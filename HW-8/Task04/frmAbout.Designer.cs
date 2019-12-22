@@ -78,7 +78,6 @@
             this.Name = "frmAbout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "О программе";
-            this.Activated += new System.EventHandler(this.frmAbout_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

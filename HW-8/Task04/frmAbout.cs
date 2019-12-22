@@ -16,9 +16,5 @@ namespace Task04
         {
             InitializeComponent();
         }
-
-        private void frmAbout_Activated(object sender, EventArgs e)
-        {
-        }
     }
 }

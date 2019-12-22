@@ -25,7 +25,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Task03
+namespace Task04
 {
     public partial class frmQuestions : Form
     {
@@ -55,7 +55,7 @@ namespace Task03
         private void miNew_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            if(sfd.ShowDialog() == DialogResult.OK)
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
                 database = new TrueFalse(sfd.FileName);
                 database.Add("123", true);
@@ -70,14 +70,14 @@ namespace Task03
 
         private void nudNumber_ValueChanged(object sender, EventArgs e)
         {
-            
+
             txtQuestion.Text = database[(int)nudNumber.Value - 1].text;
             chkTrue.Checked = database[(int)nudNumber.Value - 1].trueFalse;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(database == null)
+            if (database == null)
             {
                 MessageBox.Show("Создайте новую базу данных", "Сообщение");
                 return;
@@ -111,7 +111,7 @@ namespace Task03
         private void miOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 database = new TrueFalse(ofd.FileName);
                 database.Load();
@@ -144,9 +144,10 @@ namespace Task03
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     database.FileName = sfd.FileName;
-                    database.Save(); 
+                    database.Save();
+                }
+                else MessageBox.Show("База данных не создана");
             }
-            else MessageBox.Show("База данных не создана");
         }
     }
 }
